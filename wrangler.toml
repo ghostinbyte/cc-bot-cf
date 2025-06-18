@@ -1,0 +1,9 @@
+name = "cc-bot-cf"
+main = "cc-bot.js"
+compatibility_date = "2024-06-01"
+
+[vars]
+TELEGRAM_BOT_TOKEN = "isi_token_bot_anda"
+ADMIN_USER_ID = "123456789"
+ADMIN_USERNAME = "username_anda"
+CHECK_CC_API_URL = "https://api.chkr.cc/" # bisa kosong jika tidak pakai
