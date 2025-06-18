@@ -1,6 +1,7 @@
 name = "cc-bot-cf"
 main = "cc-bot.js"
 compatibility_date = "2024-06-01"
+type = "javascript"
 
 [vars]
 TELEGRAM_BOT_TOKEN = "TOKEN_BOT"
