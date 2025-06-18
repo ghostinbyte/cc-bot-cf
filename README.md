@@ -1,124 +1,56 @@
-# 💳 CC Bot CF — Telegram CC Checker & Generator (Cloudflare Worker)
 
-Bot Telegram yang memungkinkan Anda untuk generate dan mengecek validitas kartu kredit langsung di Telegram, dijalankan tanpa VPS menggunakan **Cloudflare Workers**.
+# 💳 CC Bot CF â€” Telegram CC Checker & Generator (Cloudflare Worker)
 
----
-
-## 🚀 Deploy Otomatis ke Cloudflare Workers
-
-Klik tombol berikut untuk langsung deploy:
-
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ghostinbyte/cc-bot-cf)
+Bot Telegram yang bisa generate & cek validitas kartu kredit langsung dari Telegram. Dirancang untuk berjalan di Cloudflare Workers tanpa VPS atau hosting tambahan.
 
 ---
 
-## 🛠️ Deploy Manual (via Wrangler CLI)
+## 🚀 Cara Deploy Manual (Disarankan)
 
-### 1. Install Wrangler
+Karena tombol deploy otomatis Cloudflare saat ini hanya mendukung proyek berbasis `package.json`, Anda bisa mengikuti langkah manual berikut untuk menjalankan bot ini:
+
+### 📌 Langkah Manual via Dashboard Cloudflare
+
+1. Masuk ke [Cloudflare Dashboard](https://dash.cloudflare.com/)
+2. Buka **Workers & Pages â†’ Create Application â†’ Create Worker**
+3. Hapus kode default, lalu **copy-paste isi file `cc-bot.js`** ke editor
+4. Klik **Save and Deploy**
+5. Setelah itu, buka tab **Settings â†’ Variables**, lalu tambahkan variabel berikut:
+
+| Nama Variabel          | Contoh Nilai                     |
+|------------------------|----------------------------------|
+| `TELEGRAM_BOT_TOKEN`   | `123456:ABCdefGhiJKLmnopQRsTUvW` |
+| `ADMIN_USER_ID`        | `123456789`                      |
+| `ADMIN_USERNAME`       | `yourusername`                   |
+| `CHECK_CC_API_URL`     | `https://api.chkr.cc/` *(opsional)* |
+
+6. Set webhook bot Telegram:
 ```bash
-npm install -g wrangler
-```
-
-### 2. Login ke Cloudflare
-```bash
-wrangler login
-```
-
-### 3. Clone Repository
-```bash
-git clone https://github.com/ghostinbyte/cc-bot-cf.git
-cd cc-bot-cf
-```
-
-### 4. Buat file `wrangler.toml`
-Contoh:
-```toml
-name = "cc-bot-cf"
-main = "cc-bot.js"
-compatibility_date = "2024-06-01"
-
-[vars]
-TELEGRAM_BOT_TOKEN = "ISI_TOKEN_BOT"
-ADMIN_USER_ID = "123456789"
-ADMIN_USERNAME = "username"
-CHECK_CC_API_URL = "https://api.chkr.cc/"
-```
-
-### 5. Deploy ke Cloudflare
-```bash
-wrangler deploy
-```
-
-### 6. Set Webhook Telegram
-```bash
-curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
+curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
 ```
 
 ---
 
-## ⚙️ Variabel Lingkungan
+## 🧪 Contoh Perintah Telegram
 
-| Nama Variabel          | Deskripsi                                      |
-|------------------------|-----------------------------------------------|
-| `TELEGRAM_BOT_TOKEN`   | Token bot dari BotFather                      |
-| `ADMIN_USER_ID`        | ID Telegram Anda (angka)                      |
-| `ADMIN_USERNAME`       | Username Telegram Anda (tanpa @)             |
-| `CHECK_CC_API_URL`     | (Opsional) API checker eksternal (`https://api.chkr.cc/`) |
-
----
-
-## 🧪 Contoh Perintah
-
-### 🔹 Generate Kartu Kredit
-/generate 5
-/generate 519505 5
-/generate 519505 3 12 2025
-/generate 519505 3 * * 123
-
-### 🔹 Cek 1 Kartu Kredit
-/check 4532123412341234|12|2026|123
-
-### 🔹 Cek Banyak Sekaligus
-/checkall
-4532123412341234|12|2026|123
-4556789012345678|01|2027|456
+- `/generate 5` â€” Generate 5 kartu random (BIN acak)
+- `/generate 519505 5` â€” Generate 5 kartu dari BIN 519505
+- `/check 4532123412341234|12|2026|123` â€” Cek 1 kartu
+- `/checkall` lalu kirim banyak kartu dalam format:
+  ```
+  4532xxxxxxxxxxxx|12|2025|123
+  5555xxxxxxxxxxxx|01|2027|456
+  ```
 
 ---
 
-## 💡 Fitur
+## 🧰 Fitur
 
-- ✅ Validasi CC via API
-- ✅ Auto-format hasil cek
-- ✅ Opsi validasi manual atau langsung
-- ✅ Mendukung CVV, Expiry, BIN custom
-- ✅ Inline keyboard dan anti-spam (hanya admin yang diizinkan)
-
----
-
-## 🧰 Deploy Manual (Tanpa `wrangler.toml`)
-
-Jika tidak ingin membuat file `wrangler.toml`, Anda bisa menggunakan perintah CLI lengkap:
-
-```bash
-wrangler deploy cc-bot.js \
-  --name cc-bot-cf \
-  --compatibility-date 2024-06-01 \
-  --var TELEGRAM_BOT_TOKEN="ISI_TOKEN_BOT" \
-  --var ADMIN_USER_ID="123456789" \
-  --var ADMIN_USERNAME="username" \
-  --var CHECK_CC_API_URL="https://api.chkr.cc/"
-```
-
-Setelah deploy selesai, set webhook Telegram Anda ke endpoint Worker:
-
-```bash
-curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
-```
-
-Gantilah `<your-subdomain>` sesuai domain Cloudflare Workers Anda.
+- ✅ Generate kartu dengan BIN custom & random
+- ✅ Cek validitas kartu (terintegrasi API checker)
+- ✅ Inline keyboard (copy ID, validasi, dsb)
+- ✅ Hanya admin yang bisa pakai bot
 
 ---
 
-> ⚠️*Proyek ini hanya untuk edukasi dan testing. Dilarang digunakan untuk aktivitas ilegal.*
-
----
+> ⚠️ Disclaimer: Bot ini hanya untuk tujuan edukasi. Jangan gunakan untuk aktivitas ilegal.
