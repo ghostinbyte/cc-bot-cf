@@ -53,4 +53,4 @@ curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https:
 
 ---
 
-> ⚠️Disclaimer: Bot ini hanya untuk tujuan edukasi. Jangan gunakan untuk aktivitas ilegal.
+> ⚠️ Disclaimer: Bot ini hanya untuk tujuan edukasi. Jangan gunakan untuk aktivitas ilegal.
