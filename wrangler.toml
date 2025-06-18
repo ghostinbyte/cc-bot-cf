@@ -1,5 +1,5 @@
 name = "cc-bot-cf"
-main = "cc-bot.js"
+main = "index.js"
 compatibility_date = "2024-06-01"
 type = "javascript"
 
