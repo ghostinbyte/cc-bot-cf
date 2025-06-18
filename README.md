@@ -26,6 +26,7 @@ Karena tombol deploy otomatis Cloudflare saat ini hanya mendukung proyek berbasi
 6. Set webhook bot Telegram:
 ```bash
 curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
+```
 
 
 ---
