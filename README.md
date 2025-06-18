@@ -1,5 +1,4 @@
-
-# 💳 CC Bot CF â€” Telegram CC Checker & Generator (Cloudflare Worker)
+# 💳 CC Bot CF — Telegram CC Checker & Generator (Cloudflare Worker)
 
 Bot Telegram yang bisa generate & cek validitas kartu kredit langsung dari Telegram. Dirancang untuk berjalan di Cloudflare Workers tanpa VPS atau hosting tambahan.
 
@@ -27,29 +26,69 @@ Karena tombol deploy otomatis Cloudflare saat ini hanya mendukung proyek berbasi
 6. Set webhook bot Telegram:
 ```bash
 curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
-```
+
 
 ---
 
-## 🧪 Contoh Perintah Telegram
+🌐 Cara Mengaktifkan Bot / Set Webhook via Browser (Tanpa Terminal)
 
-- `/generate 5` — Generate 5 kartu random (BIN acak)
-- `/generate 519505 5` — Generate 5 kartu dari BIN 519505
-- `/check 4532123412341234|12|2026|123` — Cek 1 kartu
-- `/checkall` lalu kirim banyak kartu dalam format:
-  ```
-  4532xxxxxxxxxxxx|12|2025|123
-  5555xxxxxxxxxxxx|01|2027|456
-  ```
+Untuk menghubungkan bot Telegram Anda ke Cloudflare Worker tanpa menggunakan terminal, ikuti langkah berikut:
+
+1. Dapatkan token bot Anda dari BotFather
+
+
+2. Ganti <YOUR_BOT_TOKEN> dengan token tersebut
+
+
+3. Ganti <your-subdomain> dengan subdomain Worker kamu di Cloudflare (misalnya: cc-bot-cf.username.workers.dev)
+
+
+4. Buka link berikut di browser Anda:
+
+
+
+https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook
+
+✅ Jika berhasil, Telegram akan menampilkan respon seperti ini:
+
+{
+  "ok": true,
+  "result": true,
+  "description": "Webhook was set"
+}
+
+📌 Anda hanya perlu membuka link ini satu kali setiap kali deploy ulang Worker, atau saat pertama kali menghubungkan bot.
+
 
 ---
 
-## 🧰 Fitur
+🧪 Contoh Perintah Telegram
 
-- ✅ Generate kartu dengan BIN custom & random
-- ✅ Cek validitas kartu (terintegrasi API checker)
-- ✅ Inline keyboard (copy ID, validasi, dsb)
-- ✅ Hanya admin yang bisa pakai bot
+/generate 5 — Generate 5 kartu random (BIN acak)
+
+/generate 519505 5 — Generate 5 kartu dari BIN 519505
+
+/check 4532123412341234|12|2026|123 — Cek 1 kartu
+
+/checkall lalu kirim banyak kartu dalam format:
+
+4532xxxxxxxxxxxx|12|2025|123
+5555xxxxxxxxxxxx|01|2027|456
+
+
+
+---
+
+🧰 Fitur
+
+✅ Generate kartu dengan BIN custom & random
+
+✅ Cek validitas kartu (terintegrasi API checker)
+
+✅ Inline keyboard (copy ID, validasi, dsb)
+
+✅ Hanya admin yang bisa pakai bot
+
 
 ---
 
