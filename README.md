@@ -12,10 +12,10 @@ Karena tombol deploy otomatis Cloudflare saat ini hanya mendukung proyek berbasi
 ### 📌 Langkah Manual via Dashboard Cloudflare
 
 1. Masuk ke [Cloudflare Dashboard](https://dash.cloudflare.com/)
-2. Buka **Workers & Pages â†’ Create Application â†’ Create Worker**
+2. Buka **Workers & Pages → Create Application → Create Worker**
 3. Hapus kode default, lalu **copy-paste isi file `cc-bot.js`** ke editor
 4. Klik **Save and Deploy**
-5. Setelah itu, buka tab **Settings â†’ Variables**, lalu tambahkan variabel berikut:
+5. Setelah itu, buka tab **Settings → Variables**, lalu tambahkan variabel berikut:
 
 | Nama Variabel          | Contoh Nilai                     |
 |------------------------|----------------------------------|
@@ -33,9 +33,9 @@ curl -X POST "https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https:
 
 ## 🧪 Contoh Perintah Telegram
 
-- `/generate 5` â€” Generate 5 kartu random (BIN acak)
-- `/generate 519505 5` â€” Generate 5 kartu dari BIN 519505
-- `/check 4532123412341234|12|2026|123` â€” Cek 1 kartu
+- `/generate 5` — Generate 5 kartu random (BIN acak)
+- `/generate 519505 5` — Generate 5 kartu dari BIN 519505
+- `/check 4532123412341234|12|2026|123` — Cek 1 kartu
 - `/checkall` lalu kirim banyak kartu dalam format:
   ```
   4532xxxxxxxxxxxx|12|2025|123
