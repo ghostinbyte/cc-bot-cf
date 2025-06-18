@@ -51,7 +51,7 @@ Untuk menghubungkan bot Telegram Anda ke Cloudflare Worker tanpa menggunakan ter
 https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook
 ```
 
-✅ Jika berhasil, Telegram akan menampilkan respon seperti ini:
+✅ Jika berhasil, Browser akan menampilkan respon seperti ini:
 
 ```bash
 {
