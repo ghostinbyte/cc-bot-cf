@@ -1,11 +1,10 @@
-
-# 💳 CC Bot CF -- Telegram CC Checker & Generator (Cloudflare Worker)
+# 💳 CC Bot CF — Telegram CC Checker & Generator (Cloudflare Worker)
 
 Bot Telegram yang memungkinkan Anda untuk generate dan mengecek validitas kartu kredit langsung di Telegram, dijalankan tanpa VPS menggunakan **Cloudflare Workers**.
 
 ---
 
-## ðŸš€ Deploy Otomatis ke Cloudflare Workers
+## 🚀 Deploy Otomatis ke Cloudflare Workers
 
 Klik tombol berikut untuk langsung deploy:
 
@@ -13,7 +12,7 @@ Klik tombol berikut untuk langsung deploy:
 
 ---
 
-## ðŸ› ï¸ Deploy Manual (via Wrangler CLI)
+## 🛠️ Deploy Manual (via Wrangler CLI)
 
 ### 1. Install Wrangler
 ```bash
@@ -57,7 +56,7 @@ curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=ht
 
 ---
 
-## âš™ï¸ Variabel Lingkungan
+## ⚙️ Variabel Lingkungan
 
 | Nama Variabel          | Deskripsi                                      |
 |------------------------|-----------------------------------------------|
@@ -68,38 +67,52 @@ curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=ht
 
 ---
 
-## ðŸ§ª Contoh Perintah
+## 🧪 Contoh Perintah
 
-### ðŸ”¹ Generate Kartu Kredit
+### 🔹 Generate Kartu Kredit
 /generate 5
 /generate 519505 5
 /generate 519505 3 12 2025
 /generate 519505 3 * * 123
 
-### ðŸ”¹ Cek 1 Kartu Kredit
+### 🔹 Cek 1 Kartu Kredit
 /check 4532123412341234|12|2026|123
 
-### ðŸ”¹ Cek Banyak Sekaligus
+### 🔹 Cek Banyak Sekaligus
 /checkall
 4532123412341234|12|2026|123
 4556789012345678|01|2027|456
 
 ---
 
-## ðŸ’¡ Fitur
+## 💡 Fitur
 
-- âœ… Validasi CC via API
-- âœ… Auto-format hasil cek
-- âœ… Opsi validasi manual atau langsung
-- âœ… Mendukung CVV, Expiry, BIN custom
-- âœ… Inline keyboard dan anti-spam (hanya admin yang diizinkan)
-
----
-
-## ðŸ“ Lisensi
-
-MIT License â€” Bebas digunakan dan dimodifikasi. Mohon tetap mencantumkan atribusi.
+- ✅ Validasi CC via API
+- ✅ Auto-format hasil cek
+- ✅ Opsi validasi manual atau langsung
+- ✅ Mendukung CVV, Expiry, BIN custom
+- ✅ Inline keyboard dan anti-spam (hanya admin yang diizinkan)
 
 ---
 
-> âš ï¸ *Proyek ini hanya untuk edukasi dan testing. Dilarang digunakan untuk aktivitas ilegal.*
+## 🧰 Deploy Manual (Tanpa `wrangler.toml`)
+
+Jika tidak ingin membuat file `wrangler.toml`, Anda bisa menggunakan perintah CLI lengkap:
+
+```bash
+wrangler deploy cc-bot.js \
+  --name cc-bot-cf \
+  --compatibility-date 2024-06-01 \
+  --var TELEGRAM_BOT_TOKEN="ISI_TOKEN_BOT" \
+  --var ADMIN_USER_ID="123456789" \
+  --var ADMIN_USERNAME="username" \
+  --var CHECK_CC_API_URL="https://api.chkr.cc/"
+```
+
+Setelah deploy selesai, set webhook Telegram Anda ke endpoint Worker:
+
+```bash
+curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=https://<your-subdomain>.workers.dev/webhook"
+```
+
+Gantilah `<your-subdomain>` sesuai domain Cloudflare Workers Anda.
