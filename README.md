@@ -116,3 +116,9 @@ curl -X POST "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=ht
 ```
 
 Gantilah `<your-subdomain>` sesuai domain Cloudflare Workers Anda.
+
+---
+
+> ⚠️*Proyek ini hanya untuk edukasi dan testing. Dilarang digunakan untuk aktivitas ilegal.*
+
+---
