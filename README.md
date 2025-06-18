@@ -1,1 +1,1 @@
-# cc-bot-cf
+# cc checker bot
