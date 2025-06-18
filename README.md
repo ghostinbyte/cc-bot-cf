@@ -1,5 +1,5 @@
 
-# ðŸ’³ CC Bot CF â€” Telegram CC Checker & Generator (Cloudflare Worker)
+# 💳 CC Bot CF -- Telegram CC Checker & Generator (Cloudflare Worker)
 
 Bot Telegram yang memungkinkan Anda untuk generate dan mengecek validitas kartu kredit langsung di Telegram, dijalankan tanpa VPS menggunakan **Cloudflare Workers**.
 
